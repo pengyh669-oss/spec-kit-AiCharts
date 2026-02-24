@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
         // 3. 调用 OpenAI SDK（DashScope API）
         console.log('[API] 开始调用 AI 服务...');
         const startTime = Date.now();
-        
+
         const completion = await openaiClient.chat.completions.create({
             model: MODEL_NAME,
             messages: [
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
             temperature: 0.3, // 降低随机性，确保输出一致性
             timeout: 50000, // 50秒超时
         });
-        
+
         const duration = Date.now() - startTime;
         console.log(`[API] AI 响应耗时: ${duration}ms`);
 

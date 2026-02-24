@@ -12,6 +12,6 @@ export const openaiClient = new OpenAI({
     timeout: 50000, // 50秒超时
 });
 
-// 使用 qwen-turbo 模型（更快，适合简单任务）
-// 如果需要更高质量可改为 'qwen-max' 或 'qwen-plus'
-export const MODEL_NAME = 'qwen-turbo';
+// 使用 qwen-plus 模型（Qwen3.5-Plus - 平衡性能和质量）
+// 其他选项: 'qwen-turbo' (更快) 或 'qwen-max' (最高质量)
+export const MODEL_NAME = 'qwen-plus';

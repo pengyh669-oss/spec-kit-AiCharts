@@ -14,15 +14,35 @@ interface ChartRendererProps {
 
 export function ChartRenderer({ config }: ChartRendererProps) {
     const containerRef = useRef<HTMLDivElement>(null);
+    const chartInstanceRef = useRef<any>(null);
 
-    // 监听窗口大小变化，确保图表响应式
+    // 监听窗口大小变化，确保图表响应式调整
     useEffect(() => {
         const handleResize = () => {
-            // ECharts 会自动处理 resize，这里预留扩展空间
+            // 获取 ECharts 实例并调用 resize 方法
+            // 由于我们使用 ReactECharts，需要通过 ref 获取实例
+            if (chartInstanceRef.current) {
+                const echartsInstance = chartInstanceRef.current.getEchartsInstance();
+                if (echartsInstance) {
+                    echartsInstance.resize();
+                }
+            }
         };
 
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        // 防抖处理，避免频繁触发 resize
+        let timeoutId: NodeJS.Timeout;
+        const debouncedResize = () => {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(handleResize, 200);
+        };
+
+        window.addEventListener('resize', debouncedResize);
+
+        // 清理事件监听器
+        return () => {
+            window.removeEventListener('resize', debouncedResize);
+            clearTimeout(timeoutId);
+        };
     }, []);
 
     // 根据图表类型选择对应的组件
@@ -44,7 +64,12 @@ export function ChartRenderer({ config }: ChartRendererProps) {
     };
 
     return (
-        <div ref={containerRef} className="w-full">
+        <div
+            ref={containerRef}
+            className="w-full"
+            role="region"
+            aria-label="图表显示区域"
+        >
             {renderChart()}
         </div>
     );

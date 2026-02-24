@@ -29,7 +29,7 @@ export async function generateChart(userInput: string): Promise<GenerateChartRes
         return data as GenerateChartResponse;
     } catch (error: any) {
         clearTimeout(timeoutId);
-        
+
         if (error.name === 'AbortError') {
             throw new Error('请求超时，请稍后重试');
         }

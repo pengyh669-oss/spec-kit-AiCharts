@@ -9,6 +9,7 @@ import type { GenerateChartRequest, GenerateChartResponse, APIErrorResponse } fr
 // 使用 Node.js 运行时（OpenAI SDK 需要）
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
+export const maxDuration = 60; // 最大执行时间 60 秒
 
 export async function POST(request: NextRequest) {
     try {
@@ -29,6 +30,9 @@ export async function POST(request: NextRequest) {
         }
 
         // 3. 调用 OpenAI SDK（DashScope API）
+        console.log('[API] 开始调用 AI 服务...');
+        const startTime = Date.now();
+        
         const completion = await openaiClient.chat.completions.create({
             model: MODEL_NAME,
             messages: [
@@ -40,7 +44,11 @@ export async function POST(request: NextRequest) {
             ],
             response_format: { type: 'json_object' },
             temperature: 0.3, // 降低随机性，确保输出一致性
+            timeout: 50000, // 50秒超时
         });
+        
+        const duration = Date.now() - startTime;
+        console.log(`[API] AI 响应耗时: ${duration}ms`);
 
         // 4. 解析 AI 响应
         const content = completion.choices[0].message.content;

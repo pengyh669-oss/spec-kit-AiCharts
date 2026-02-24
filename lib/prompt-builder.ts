@@ -1,7 +1,7 @@
 // lib/prompt-builder.ts - LLM 提示词构建工具
 
 export function buildSystemPrompt(): string {
-    return `你是一个专业的数据可视化助手，负责将用户的自然语言描述转换为 ECharts 配置 JSON。
+  return `你是一个专业的数据可视化助手，负责将用户的自然语言描述转换为 ECharts 配置 JSON。
 
 **输出要求**（严格遵守）：
 1. 必须返回 JSON 对象，包含 chartType 和 option 两个字段

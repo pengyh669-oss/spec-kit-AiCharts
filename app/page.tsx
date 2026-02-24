@@ -3,7 +3,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -50,14 +50,14 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* 标题区域 */}
         <div className="text-center mb-8 animate-fadeIn">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-4xl font-bold text-black mb-2">
             AI 图表生成器
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-700">
             用自然语言描述数据，AI 自动生成可视化图表
           </p>
         </div>
@@ -69,13 +69,13 @@ export default function Home() {
             <Card className="w-full max-w-2xl p-8 animate-slideUp">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <Input
-                    type="text"
+                  <Textarea
+                    rows={3}
                     placeholder="输入数据描述，可指定图表类型，如：用柱状图显示2024年1到6月销售额100、120、150、170、180、200万元"
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
                     disabled={loading}
-                    className="text-base h-12"
+                    className="resize-none"
                   />
                 </div>
 
@@ -104,13 +104,13 @@ export default function Home() {
               </form>
 
               {/* 示例提示 */}
-              <div className="mt-6 text-sm text-gray-500 dark:text-gray-400">
+              <div className="mt-6 text-sm text-gray-600">
                 <p className="font-medium mb-2">💡 示例：</p>
                 <ul className="space-y-1 list-disc list-inside">
                   <li>2024年各月销售额：1月100万，2月120万，3月150万</li>
                   <li>北京和上海的对比：北京120、130、150，上海100、140、160</li>
                   <li>市场份额：产品A占40%，产品B占35%，产品C占25%</li>
-                  <li className="text-blue-600 dark:text-blue-400 font-medium">用柱状图显示各部门预算：研发500万，市场300万，销售400万</li>
+                  <li className="text-blue-600 font-medium">用柱状图显示各部门预算：研发500万，市场300万，销售400万</li>
                 </ul>
               </div>
             </Card>

@@ -2,7 +2,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
 
   /* WCAG AA 兼容的主题颜色 (对比度 >= 4.5:1) */
   --color-primary: #0052D9;
@@ -13,10 +13,10 @@
   /* 橙色，对比度 4.5:1 */
   --color-danger: #E34D59;
   /* 红色，对比度 5.2:1 */
-  --color-text-primary: #171717;
-  /* 深灰，对比度 14.3:1 */
-  --color-text-secondary: #666666;
-  /* 中灰，对比度 5.7:1 */
+  --color-text-primary: #000000;
+  /* 纯黑，最高对比度 */
+  --color-text-secondary: #333333;
+  /* 深灰，保持较高对比度 */
   --color-border: #E0E0E0;
   /* 浅灰边框 */
 }
@@ -28,26 +28,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* 暗色模式已禁用 - 强制使用白色背景和黑色文字 */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-
-    /* 暗色模式下的 WCAG AA 兼容颜色 */
-    --color-primary: #4992FF;
-    /* 亮蓝色，对比度 5.8:1 */
-    --color-success: #7BE188;
-    /* 亮绿色，对比度 8.1:1 */
-    --color-warning: #FFD666;
-    /* 亮黄色，对比度 10.2:1 */
-    --color-danger: #FF85C0;
-    /* 粉红色，对比度 6.3:1 */
-    --color-text-primary: #ededed;
-    /* 浅色文本，对比度 13.2:1 */
-    --color-text-secondary: #B8B8B8;
-    /* 中灰文本，对比度 6.5:1 */
-    --color-border: #2A2A2A;
-    /* 深灰边框 */
+    --background: #ffffff;
+    --foreground: #000000;
+    --color-text-primary: #000000;
+    --color-text-secondary: #333333;
   }
 }
 

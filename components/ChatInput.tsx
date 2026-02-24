@@ -2,7 +2,7 @@
 
 'use client';
 
-import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
@@ -26,13 +26,13 @@ export function ChatInput({
     return (
         <div className="w-full max-w-4xl mx-auto">
             <form onSubmit={onSubmit} className="flex gap-2">
-                <Input
-                    type="text"
+                <Textarea
+                    rows={3}
                     placeholder={placeholder}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     disabled={loading}
-                    className="flex-1"
+                    className="flex-1 resize-none"
                 />
                 <Button
                     type="submit"
